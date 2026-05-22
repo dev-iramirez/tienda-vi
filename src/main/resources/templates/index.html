@@ -1,33 +1,12 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TechShop</title>
-        <meta charset="UTF-8"/>
-<link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="http://www.thymeleaf.org" 
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{general/fragmentos :: head}"></head>
     <body>
-        <header>
-            <nav>
-                <a class="logo nav-link" href="/">TechShop</a>
-                <ul class="nav-menu">
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/ejemplo2">Mis Autos</a></li>
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/multimedia">Multimedia</a></li>
-                    <li class="nav-menu-item"><a class="nav-link menu-item" href="/iframes">iFrames</a></li>
-                </ul>
-            </nav>
-        </header>
-        <aside>
-            <h2>La oferta de la semana</h2>
-            <p>No se quede sin ver el mundial como debe ser TLC de 85" a 230.000</p>
-        </aside>
-        <section>
-            <h2>El producto del mes</h2>
-            <p>Nuestros clientes se volvieron locos con nuestras ofertas</p>
-        </section>
+        <header th:replace="~{general/fragmentos :: header}"></header>
         
+        
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>      
     </body>
 </html>

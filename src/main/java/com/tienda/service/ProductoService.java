@@ -68,4 +68,23 @@ public class ProductoService {
             throw new IllegalStateException("No se puede eliminar la producto, tiene productos asociados");
         }
     }
+    
+    //Metodo de servicio para la consulta derivada
+      @Transactional(readOnly=true)
+    public List<Producto> consultaDerivada(double precioInf, double precioSup) {
+        return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
+    }
+    
+    //Metodo de servicio para la consulta JPQL
+      @Transactional(readOnly=true)
+    public List<Producto> consultaJPQL(double precioInf, double precioSup) {
+        return productoRepository.consultaJPQL(precioInf, precioSup);
+    }
+    
+    //Metodo de servicio para la consulta SQL
+      @Transactional(readOnly=true)
+    public List<Producto> consultaSQL(double precioInf, double precioSup) {
+        return productoRepository.consultaSQL(precioInf, precioSup);
+    }
+    
 }

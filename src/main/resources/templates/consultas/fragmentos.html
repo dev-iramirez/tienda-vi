@@ -56,3 +56,42 @@
     </div>
 
 </section>
+
+<!-- fragmento 3 para mostrar las consultas en formularios -->
+<section th:fragment="consultas" class="row row-cols-4 p-3">
+    <div th:replace="~{consultas/fragmentos :: frmConsulta('primary',#{consultas.derivadas}, '/consultas/consultaDerivada')}"/>  
+    <div th:replace="~{consultas/fragmentos :: frmConsulta('warning',#{consultas.jpql}, '/consultas/consultaJPQL')}"/>  
+    <div th:replace="~{consultas/fragmentos :: frmConsulta('success',#{consultas.sql}, '/consultas/consultaSQL')}"/>  
+    <div class='card'><p>Acá va su práctica #2 </p></div>
+
+</section>
+<!-- fragmento 4 para mostrar el formulario de la consulta -->
+<section th:fragment="frmConsulta(frmColor, frmText, frmUrl)">
+    <form method="post" class='was-validated'
+          th:action='@{${frmUrl}}'>
+        <div class='card p-2'>
+            <div class='card-header text-center text-white'
+                 th:classappend="${'bg-'+frmColor}">
+                <h5>[[${frmText}]]</h5>               
+            </div>
+            <div class='card-body'>
+                <div class='mb-3'>
+                    <label>[[#{consultas.precio.inferior}]]</label>
+                    <input type='number' name='precioInf' th:value='${precioInf}'
+                           class='form-control' min="0" required/>           
+                </div>
+                <div clas='mb-3'>
+                    <label>[[#{consultas.precio.superior}]]</label>
+                    <input type='number' name='precioSup' th:value='${precioSup}'
+                           class='form-control' min="0" required/>           
+                </div>
+            </div>
+            <div class='card-footer text-center'>
+                <button type='submit' class='btn text-white'
+                        th:classappend="${'btn-'+frmColor}">
+                    <i class="fa-solid fa-magnifying-glass-dollar"></i>  [[${frmText}]]    
+                </button>
+            </div>
+        </div>       
+    </form>     
+</section>

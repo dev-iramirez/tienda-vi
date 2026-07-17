@@ -11,52 +11,61 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/consultas")
 public class ConsultaController {
-    
+
     //Se enlaza la capa de servicio
     private final ProductoService productoService;
 
     public ConsultaController(ProductoService productoservice) {
         this.productoService = productoservice;
     }
-    
+
     @GetMapping("/listado")
     public String listado(Model model) {
         var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         return "/consultas/listado";
-     }
-     
+    }
+
     @PostMapping("/consultaDerivada")
-     public String consultaDerivada(@RequestParam() double precioInf,
-             @RequestParam()double precioSup,
-             Model model) {
+    public String consultaDerivada(@RequestParam() double precioInf,
+            @RequestParam() double precioSup,
+            Model model) {
         var productos = productoService.consultaDerivada(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
-     }
-     
+    }
+
     @PostMapping("/consultaJPQL")
-     public String consultaJPQL(@RequestParam() double precioInf,
-             @RequestParam()double precioSup,
-             Model model) {
+    public String consultaJPQL(@RequestParam() double precioInf,
+            @RequestParam() double precioSup,
+            Model model) {
         var productos = productoService.consultaJPQL(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
-     }
-     
+    }
+
     @PostMapping("/consultaSQL")
-     public String consultaSQL(@RequestParam() double precioInf,
-             @RequestParam()double precioSup,
-             Model model) {
+    public String consultaSQL(@RequestParam() double precioInf,
+            @RequestParam() double precioSup,
+            Model model) {
         var productos = productoService.consultaSQL(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
-     }
-     
+    }
+
+    //Consulta Práctica #2
+    @PostMapping("/consultaDescripcion")
+    public String consultaDescripcion(@RequestParam() String descripcion, Model model) {
+        var productos = productoService.consultaPorDescripcion(descripcion);
+        model.addAttribute("productos", productos);
+        model.addAttribute("descripcion", descripcion);
+        return "/consultas/listado";
+    }
+
 }

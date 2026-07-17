@@ -62,10 +62,10 @@
     <div th:replace="~{consultas/fragmentos :: frmConsulta('primary',#{consultas.derivadas}, '/consultas/consultaDerivada')}"/>  
     <div th:replace="~{consultas/fragmentos :: frmConsulta('warning',#{consultas.jpql}, '/consultas/consultaJPQL')}"/>  
     <div th:replace="~{consultas/fragmentos :: frmConsulta('success',#{consultas.sql}, '/consultas/consultaSQL')}"/>  
-    <div class='card'><p>Acá va su práctica #2 </p></div>
-
+    <!-- <div class='card'><p>Acá va su práctica #2 </p></div> -->
+    <div th:replace="~{consultas/fragmentos :: frmDescripcion('info', 'Consulta por Descripción', '/consultas/consultaDescripcion')}"/>
 </section>
-<!-- fragmento 4 para mostrar el formulario de la consulta -->
+<!-- fragmento 4 para mostrar el formulario de la consulta Práctica #2-->
 <section th:fragment="frmConsulta(frmColor, frmText, frmUrl)">
     <form method="post" class='was-validated'
           th:action='@{${frmUrl}}'>
@@ -95,3 +95,25 @@
         </div>       
     </form>     
 </section>
+<!-- fragmento 5 para mostrar el formulario de la consulta por nombre-->
+<div th:fragment="frmDescripcion(frmColor, frmText, frmUrl)">
+    <form method="post" class="was-validated" th:action="@{${frmUrl}}">
+        <div class="card p-2">
+            <div class="card-header text-center text-white" th:classappend="'bg-' + ${frmColor}">
+                <h5>[[${frmText}]]</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label>Descripción del producto</label>
+                    <!-- El 'name' aquí debe ser el nombre del parámetro que recibe tu Controller -->
+                    <input type="text" name="descripcion" class="form-control" placeholder="Escriba la descripción..." required="true" />
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn text-white" th:classappend="'btn-' + ${frmColor}">
+                    <i class="fa-solid fa-magnifying-glass"></i> Consultar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
